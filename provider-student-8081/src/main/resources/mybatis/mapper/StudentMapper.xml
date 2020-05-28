@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.woniuxy.springcloud.provider.student.mapper.StudentMapper">
+        <insert id="insertStudent">
+            insert into student values (null,#{sname},#{age})
+        </insert>
+    <select id="selectStudentBySid" resultType="Student">
+        select * from student where sid=#{sid}
+    </select>
+    <select id="selectAllStudents" resultType="Student">
+        select * from student
+    </select>
+</mapper>

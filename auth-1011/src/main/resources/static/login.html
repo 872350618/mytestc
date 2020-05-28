@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/auth/js/jquery-2.1.4.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnlogin").click(function () {
+                $.ajax({
+                    type:"get",
+                    url:"/auth/login",
+                    data:{uname:$("#uname").val(),pwd:$("#pwd").val()},
+                    dataType:"json",
+                    success:function (data) {
+                        if(data.stateCode==401){
+                            alert("登录失败");
+                        }else{
+                            //登录成功，将token存储到客户端,Cookie
+                            var localStorage = window.localStorage;
+                            localStorage.setItem("token",data.data);
+                            window.location.href="/auth/index.html";
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+login<br/>
+<form>
+    <input type="text" name="uname" id="uname"/><br/>
+    <input type="text" name="pwd" id="pwd"/><br/>
+    <input type="button" value="login" id="btnlogin"/><br/>
+</form>
+<a href="/auth/index.html">index</a>
+</body>
+</html>

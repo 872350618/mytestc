@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/auth/js/jquery-2.1.4.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var localStorage = window.localStorage;
+            var token=localStorage.getItem("token");
+            console.log(token);
+
+            $.ajax({
+                type:"get",
+                url:"/provider-student/student/",
+                dataType:"json",
+                //请求头中添加token信息
+                headers:{"token":token},
+                success:function (data) {
+                    if(data.stateCode==401){
+                        window.location.href="/auth/login.html";
+                    }else{
+                        console.log(data);
+                    }
+                }
+            });
+
+            $("#btndel").click(function () {
+                window.localStorage.removeItem("token");
+            });
+
+        });
+    </script>
+</head>
+<body>
+indexlogin<br/>
+<a href="/auth/login.html">login</a><br/>
+<input type="button" value="删除token" id="btndel"/>
+</body>
+</html>

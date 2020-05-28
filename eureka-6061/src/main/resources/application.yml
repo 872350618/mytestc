@@ -1,0 +1,18 @@
+server:
+  port: ${port:6061}
+
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: ${defaultZone:http://localhost:6061/eureka}
+#  server:
+#    enable-self-preservation: false #禁用保护机制
+#    eviction-interval-timer-in-ms: 2000 #服务器默认60秒启动服务剔除扫描，
+#                            #剔除超过默认90秒，没有发送心跳包的服务，将他们剔除
+
+spring:
+  application:
+    name: eureka

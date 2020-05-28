@@ -1,0 +1,33 @@
+server:
+  port: ${port:8081}
+
+#微服务程序，注册到注册中心,对外公布的名字
+spring:
+  application:
+    name: provider-student
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///springclouddb
+    username: root
+    password: 123
+
+mybatis:
+  mapper-locations: classpath:/mybatis/mapper/*Mapper.xml
+  type-aliases-package: com.woniuxy.springcloud.common.entity
+
+
+eureka:
+  client:
+    register-with-eureka: true #8081要将自己的服务器信息注入到Eureka服务器
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:6061/eureka
+      #有了集群，客户注册到Eureka服务器，应该挂到每个集群中的每个节点
+      #defaultZone: http://localhost:6061/eureka,http://localhost:6062/eureka
+      #注册到Eureka服务器的地址
+#  instance:
+#    lease-renewal-interval-in-seconds: 1
+#          #设置客户端向服务器发送心跳包的时间间隔,默认是30秒
+#    lease-expiration-duration-in-seconds: 2
+#          #如果客户端连续90s，没有向服务器发送心跳包，服务器认为客户端下线
+

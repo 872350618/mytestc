@@ -1,0 +1,36 @@
+server:
+  port: 9091
+
+#zuul:
+#  routes:
+#    provider-student:               #路由id,就是一个名字，可以任意
+#      path: /student/**             #请求路径http://localhost:9091/student/**
+#      url:  http://localhost:8081/  #映射路径http://localhost:8081/**
+#    consumer-student:
+#      path: /consumerstudent/**
+#      url: http://localhost:7071/
+
+spring:
+  application:
+    name: zuul
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6061/eureka
+
+#zuul:
+#  routes:
+#    provider-student:               #路由id,就是一个名字，可以任意
+#      path: /student/**             #请求路径http://localhost:9091/student/**
+#      serverId: provider-student    #映射路径http://localhost:8081/**,
+#                                    #使用面向服务的路由，引入了eureka注册中心
+#                                    #serverId:  注册在Eureka上的服务名
+#    consumer-student:
+#      path: /consumerstudent/**
+#      serverId: consumer-student
+
+#简化配置:路由id和serverid一致:
+zuul:
+  routes:
+    provider-student: /student/**
