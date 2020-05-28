@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-
+//添加注释
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
